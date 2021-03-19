@@ -1,0 +1,17 @@
+<div class="container">
+<form [formGroup]="formulario">
+  <div class="form-group" >
+    <label for="exampleInputEmail1">Numero: </label>
+    <input type="text" formControlName="inputNumero">
+  </div>
+  <div style="background-color:red;" *ngIf="formulario.get('inputNumero').errors && formulario.get('inputNumero').dirty">
+   <p *ngIf="formulario.get('inputNumero').hasError('required')"> el campo debe ser requerido </p>
+   <p *ngIf="formulario.get('inputNumero').hasError('minLength')"> la cantidad minima a ingresar son 14 numeros </p>
+   <p *ngIf="formulario.get('inputNumero').hasError('maxLength')"> la cantidad maxima a ingresar son 16 numeros </p>
+</div>
+  <label *ngIf="numeroMasSeRepite && numeroDEVecesQueSeRepite">el numero que mas se repite es: {{numeroMasSeRepite}} con {{numeroDEVecesQueSeRepite}} veces repetidas</label>
+
+  <button *ngIf="formulario.valid" class="btn btn-primary" (click)="capturarNumero()">Enviar numero</button>
+  <pre>{{formulario.value | json}}</pre>
+</form>
+</div>
